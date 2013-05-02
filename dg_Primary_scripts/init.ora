@@ -1,0 +1,101 @@
+##############################################################################
+# Copyright (c) 1991, 2001, 2002 by Oracle Corporation
+##############################################################################
+ 
+###########################################
+# Archive
+###########################################
+log_archive_format=%t_%s_%r.dbf
+log_archive_config='DG_CONFIG=(primary,standby)'
+log_archive_dest_1='LOCATION=/u01/app/oracle/oradata/primary/arch 
+VALID_FOR=(ALL_LOGFILES,ALL_ROLES) 
+DB_UNIQUE_NAME=primary'
+log_archive_dest_2='SERVICE=standby LGWR ASYNC VALID_FOR=(ALL_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=standby'
+log_archive_dest_state_1='ENABLE'
+log_archive_dest_state_2='ENABLE'
+log_archive_max_processes=2
+ 
+###########################################
+# Cache and I/O
+###########################################
+db_block_size=8192
+db_file_multiblock_read_count=16
+ 
+###########################################
+# Cursors and Library Cache
+###########################################
+open_cursors=300
+ 
+###########################################
+# Database Identification
+###########################################
+db_domain=""
+db_name=primary
+db_unique_name=primary
+ 
+###########################################
+# Diagnostics and Statistics
+###########################################
+background_dump_dest=/u01/app/oracle/admin/primary/bdump
+core_dump_dest=/u01/app/oracle/admin/primary/cdump
+user_dump_dest=/u01/app/oracle/admin/primary/udump
+ 
+###########################################
+# File Configuration
+###########################################
+control_files=("/u01/app/oracle/oradata/primary/control01.ctl", "/u01/app/oracle/oradata/primary/control02.ctl", "/u01/app/oracle/oradata/primary/control03.ctl")
+db_recovery_file_dest=/u01/app/oracle/flash_recovery_area
+db_recovery_file_dest_size=2147483648
+ 
+###########################################
+# Job Queues
+###########################################
+job_queue_processes=10
+ 
+###########################################
+# Miscellaneous
+###########################################
+compatible=10.2.0.1.0
+ 
+###########################################
+# Processes and Sessions
+###########################################
+processes=150
+ 
+###########################################
+# SGA Memory
+###########################################
+sga_target=285212672
+ 
+###########################################
+# Security and Auditing
+###########################################
+audit_file_dest=/u01/app/oracle/admin/primary/adump
+remote_login_passwordfile=EXCLUSIVE
+ 
+###########################################
+# Shared Server
+###########################################
+dispatchers="(protocol=TCP)"
+shared_servers=1
+ 
+###########################################
+# Sort, Hash Joins, Bitmap Indexes
+###########################################
+pga_aggregate_target=94371840
+ 
+###########################################
+# System Managed Undo and Rollback Segments
+###########################################
+undo_management=AUTO
+undo_tablespace=UNDOTBS1
+
+###########################################
+# DataGurad
+###########################################
+fal_client=primary
+fal_server=standy
+standby_file_management='AUTO'
+standby_archive_dest='/u01/app/oracle/oradata/primary/arch'
+db_file_name_convert='standby','primary'
+log_file_name_convert='standby','primary'

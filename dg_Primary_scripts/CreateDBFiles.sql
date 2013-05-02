@@ -1,0 +1,6 @@
+connect "SYS"/"&&sysPassword" as SYSDBA
+set echo on
+spool /u01/app/oracle/admin/primary/scripts/CreateDBFiles.log
+CREATE SMALLFILE TABLESPACE "USERS" LOGGING DATAFILE '/u01/app/oracle/oradata/primary/users01.dbf' SIZE 5M REUSE AUTOEXTEND ON NEXT  1280K MAXSIZE UNLIMITED EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT  AUTO;
+ALTER DATABASE DEFAULT TABLESPACE "USERS";
+spool off
